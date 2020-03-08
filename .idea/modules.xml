@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Externo común/Externo común.iml" filepath="$PROJECT_DIR$/Externo común/Externo común.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SansBot.iml" filepath="$PROJECT_DIR$/SansBot.iml" />
+    </modules>
+  </component>
+</project>

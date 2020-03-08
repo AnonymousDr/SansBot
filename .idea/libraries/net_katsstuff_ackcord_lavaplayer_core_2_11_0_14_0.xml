@@ -1,0 +1,51 @@
+<component name="libraryTable">
+  <library name="net.katsstuff:ackcord-lavaplayer-core_2.11:0.14.0" type="repository">
+    <properties maven-id="net.katsstuff:ackcord-lavaplayer-core_2.11:LATEST">
+      <exclude>
+        <dependency maven-id="com.sedmelluq:lavaplayer-natives" />
+        <dependency maven-id="com.sedmelluq:lavaplayer" />
+      </exclude>
+    </properties>
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-lavaplayer-core_2.11/0.14.0/ackcord-lavaplayer-core_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-core_2.11/0.14.0/ackcord-core_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-requests_2.11/0.14.0/ackcord-requests_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-http_2.11/10.1.8/akka-http_2.11-10.1.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-gateway_2.11/0.14.0/ackcord-gateway_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-voice_2.11/0.14.0/ackcord-voice_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/katsstuff/ackcord-data_2.11/0.14.0/ackcord-data_2.11-0.14.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/chuusai/shapeless_2.11/2.3.3/shapeless_2.11-2.3.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/macro-compat_2.11/1.1.1/macro-compat_2.11-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-core_2.11/0.11.1/circe-core_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-numbers_2.11/0.11.1/circe-numbers_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/cats-core_2.11/1.5.0/cats-core_2.11-1.5.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/cats-macros_2.11/1.5.0/cats-macros_2.11-1.5.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/cats-kernel_2.11/1.5.0/cats-kernel_2.11-1.5.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/machinist_2.11/0.6.6/machinist_2.11-0.6.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-parser_2.11/0.11.1/circe-parser_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-generic-extras_2.11/0.11.1/circe-generic-extras_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-generic_2.11/0.11.1/circe-generic_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-derivation_2.11/0.11.0-M1/circe-derivation_2.11-0.11.0-M1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/beachape/enumeratum_2.11/1.5.13/enumeratum_2.11-1.5.13.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/beachape/enumeratum-macros_2.11/1.5.9/enumeratum-macros_2.11-1.5.9.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/beachape/enumeratum-circe_2.11/1.5.21/enumeratum-circe_2.11-1.5.21.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.5.23/akka-actor_2.11-2.5.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/config/1.3.3/config-1.3.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-java8-compat_2.11/0.7.0/scala-java8-compat_2.11-0.7.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-stream_2.11/2.5.23/akka-stream_2.11-2.5.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-protobuf_2.11/2.5.23/akka-protobuf_2.11-2.5.23.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/ssl-config-core_2.11/0.3.7/ssl-config-core_2.11-0.3.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.1.1/scala-parser-combinators_2.11-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-http-core_2.11/10.1.8/akka-http-core_2.11-10.1.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-parsing_2.11/10.1.8/akka-parsing_2.11-10.1.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/de/heikoseeberger/akka-http-circe_2.11/1.25.2/akka-http-circe_2.11-1.25.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/circe/circe-jawn_2.11/0.11.1/circe-jawn_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/typelevel/jawn-parser_2.11/0.14.1/jawn-parser_2.11-0.14.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
