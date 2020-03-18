@@ -1,6 +1,16 @@
 package com.anderhurtado.java.discord.sans;
 
 
+import com.anderhurtado.java.discord.sans.objetos.Cantante;
+import com.anderhurtado.java.discord.sans.util.modelos.VideoBasico;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.Channel;
+import com.google.api.services.youtube.model.PlaylistItem;
+import com.google.api.services.youtube.model.SearchResult;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -27,7 +37,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class Inicio{
 
@@ -35,10 +47,15 @@ public class Inicio{
     public static final YoutubeAudioSourceManager yasm=new YoutubeAudioSourceManager();
     public static final AudioPlayerManager apm=new DefaultAudioPlayerManager();
     public static Connection c;
+    public static final YouTube YT=new YouTube.Builder(new NetHttpTransport(),new JacksonFactory(),new HttpRequestInitializer(){
+        @Override
+        public void initialize(HttpRequest httpRequest){}
+    }).setApplicationName("SansBot").build();
+    public static String YoutubeAPIKey;
 
     public static void main(String[] args)throws Exception{
-        if(args.length<5){
-            System.out.println("Para iniciar el programa, se deben especificar los siguientes argumentos: <Credencial del bot> <IP de base de datos> <Usuario de la base de datos> <Su contraseña>");
+        if(args.length<6){
+            System.out.println("Para iniciar el programa, se deben especificar los siguientes argumentos: <Credencial del bot> <Credencial API de YouTube> <IP de base de datos> <Usuario de la base de datos> <Su contraseña>");
             return;
         }discord=new JDABuilder(AccountType.BOT).setToken(args[0]).build();
 
@@ -52,25 +69,36 @@ public class Inicio{
             }System.exit(0);
         }).start();
 
+        YoutubeAPIKey=args[1];
+
         Properties prop=new Properties();
-        prop.setProperty("user",args[3]);
-        prop.setProperty("password",args[4]);
+        prop.setProperty("user",args[4]);
+        prop.setProperty("password",args[5]);
         prop.setProperty("useSSL","false");
         prop.setProperty("autoReconnect","true");
         Class.forName("com.mysql.jdbc.Driver");
-        c=DriverManager.getConnection("jdbc:mysql://"+args[1]+"/"+args[2],prop);
+        c=DriverManager.getConnection("jdbc:mysql://"+args[2]+"/"+args[3],prop);
         Statement s=c.createStatement();
         s.executeUpdate("CREATE TABLE IF NOT EXISTS `Registros` (`Nombre` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL PRIMARY KEY,`Enlace` varchar(16) NOT NULL);");
+        s.executeUpdate("CREATE TABLE IF NOT EXISTS Listas (ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,Lista varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,Cancion varchar(16) NOT NULL,UNIQUE(Lista,Cancion));");
+
+        new Thread(()->{
+            while(true){
+                try{
+                    long t1=System.currentTimeMillis();
+                    c.createStatement().executeQuery("SELECT 1;");
+                    long t2=System.currentTimeMillis();
+                    System.out.println("Ping con la base de datos: "+(t2-t1)+"ms");
+                    Thread.sleep(3600000);
+                }catch(Exception Ex){
+                    Ex.printStackTrace();
+                }
+            }
+        }).start();
 
         discord.awaitReady();
 
         discord.addEventListener(new ComandListener());
-
-        /*VoiceChannel vc=discord.getVoiceChannelById("583323010069561349");
-        AudioManager am=vc.getGuild().getAudioManager();
-        am.openAudioConnection(vc);
-        YoutubeAudioTrack ai=(YoutubeAudioTrack)yasm.loadTrackWithVideoId("VIDEO-ID",true);
-        am.setSendingHandler(new Audio(apm.createPlayer(),am,ai));*/
     }
 
     public static String getID(String url){
@@ -87,6 +115,18 @@ public class Inicio{
             if(url.contains("?"))return url.split("\\?")[0];
             return url;
         }return null;
+    }
+
+    public static AudioTrack[] getYoutubePlayList(String ID){
+        try{
+            PlaylistItem[] lista=Inicio.YT.playlistItems().list("snippet").setPlaylistId(ID).setMaxResults(50l).setKey(YoutubeAPIKey).execute().getItems().toArray(new PlaylistItem[0]);
+            AudioTrack[] resultado=new AudioTrack[lista.length];
+            for(int x=0;x<lista.length;x++)resultado[x]=Cantante.getTrack(lista[x].getSnippet().getResourceId().getVideoId());
+            return resultado;
+        }catch(Exception Ex){
+            Ex.printStackTrace();
+            return null;
+        }
     }
 
     public static PreparedStatement getPS(String sql)throws Exception{

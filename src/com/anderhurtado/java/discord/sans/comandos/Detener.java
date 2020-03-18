@@ -1,5 +1,6 @@
 package com.anderhurtado.java.discord.sans.comandos;
 
+import com.anderhurtado.java.discord.sans.objetos.Boton;
 import com.anderhurtado.java.discord.sans.objetos.Cantante;
 import com.anderhurtado.java.discord.sans.objetos.Comando;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -14,7 +15,7 @@ public class Detener extends Comando{
     public void ejecuta(GuildMessageReceivedEvent e,String[] args){
         Cantante c=Cantante.getCantante(e.getGuild());
         if(c==null){
-            e.getChannel().sendMessage("Puedo aceptar que cante mal... ¡Pero esta vez no soy yo!").complete();
+            e.getChannel().sendMessage("Puedo aceptar que cante mal... ¡Pero esta vez no soy yo! "+Boton.LLORANDO).complete();
             return;
         }c.cancelar();
         e.getChannel().sendMessage("Vale, vale... no me pegues... ya dejo de cantar... no me vuelvas a hablar :(").complete();

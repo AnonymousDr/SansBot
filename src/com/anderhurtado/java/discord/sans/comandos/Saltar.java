@@ -1,5 +1,6 @@
 package com.anderhurtado.java.discord.sans.comandos;
 
+import com.anderhurtado.java.discord.sans.objetos.Boton;
 import com.anderhurtado.java.discord.sans.objetos.Cantante;
 import com.anderhurtado.java.discord.sans.objetos.Comando;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -15,7 +16,7 @@ public class Saltar extends Comando{
     public void ejecuta(GuildMessageReceivedEvent e,String[] args){
         Cantante c=Cantante.getCantante(e.getGuild());
         if(c==null){
-            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke?").complete();
+            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke? "+Boton.MICROFONO_NOTAS).complete();
             return;
         }c.saltar();
         e.getChannel().sendMessage("Ahora comenzará la siguiente canción.").complete();

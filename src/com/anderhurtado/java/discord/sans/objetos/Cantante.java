@@ -51,17 +51,18 @@ public class Cantante extends AudioEventAdapter implements AudioSendHandler{
     public static long cantar(VoiceChannel vc,String ID){
         return cantar(vc,getTrack(ID));
     }
-    public static long cantar(VoiceChannel vc,AudioTrack at){
+    public static long cantar(VoiceChannel vc,AudioTrack... ats){
+        if(ats==null||ats.length==0)return -1;
         Guild g=vc.getGuild();
-        if(cantantes.containsKey(g.getIdLong()))return cantantes.get(g.getIdLong()).cantar(at);
-        iniciarCantante(vc,at);
+        if(cantantes.containsKey(g.getIdLong()))return cantantes.get(g.getIdLong()).cantar(ats);
+        iniciarCantante(vc,ats);
         return 0;
     }
 
     static Cantante iniciarCantante(VoiceChannel vc,String ID){
         return iniciarCantante(vc,getTrack(ID));
     }
-    static Cantante iniciarCantante(VoiceChannel vc,AudioTrack at){
+    static Cantante iniciarCantante(VoiceChannel vc,AudioTrack... at){
         Cantante c=new Cantante(vc);
         c.cantar(at);
         return c;
@@ -90,13 +91,15 @@ public class Cantante extends AudioEventAdapter implements AudioSendHandler{
         cantantes.remove(id);
     }
 
-    public long cantar(AudioTrack at){
+    public long cantar(AudioTrack... ats){
+        if(ats==null||ats.length==0)return -1;
         if(ap.getPlayingTrack()==null){
-            ap.playTrack(at);
+            ap.playTrack(ats[0]);
+            for(int x=1;x<ats.length;x++)canciones.add(ats[x]);
             return 0;
         }long l=ap.getPlayingTrack().getDuration()-ap.getPlayingTrack().getPosition();
         for(AudioTrack c:canciones)l+=c.getDuration();
-        canciones.add(at);
+        for(int x=0;x<ats.length;x++)canciones.add(ats[x]);
         return l;
     }
 
@@ -121,7 +124,9 @@ public class Cantante extends AudioEventAdapter implements AudioSendHandler{
     @Override
     public void onTrackEnd(AudioPlayer ap,AudioTrack track,AudioTrackEndReason ater){
         if(!canciones.isEmpty()){
-            ap.playTrack(canciones.get(0));
+            AudioTrack siguiente;
+            while((siguiente=canciones.get(0)).getInfo().isStream)canciones.remove(siguiente);
+            ap.playTrack(siguiente);
             canciones.remove(0);
             return;
         }am.closeAudioConnection();

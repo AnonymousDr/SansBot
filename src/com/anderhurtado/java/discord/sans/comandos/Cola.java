@@ -21,7 +21,7 @@ public class Cola extends Comando{
     public void ejecuta(GuildMessageReceivedEvent e,String[] args){
         Cantante c=Cantante.getCantante(e.getGuild());
         if(c==null){
-            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke?").complete();
+            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke? "+Boton.MICROFONO_NOTAS).complete();
             return;
         }int pag=0;
         if(args.length>1)try{

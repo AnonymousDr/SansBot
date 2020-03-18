@@ -9,7 +9,8 @@ public abstract class Comando{
 
     final static HashMap<String,Comando> comandos=new HashMap<>();
 
-    public final static Comando[] COMANDOS=new Comando[]{new Ayuda(),new Agregar(),new Eliminar(),new Reproducir(),new Alias(),new Cantando(),new Aleatorio(),new Detener(),new Saltar(),new Cola()};
+    public final static Comando[] COMANDOS=new Comando[]{new Ayuda(),new Agregar(),new Eliminar(),new Reproducir(),new Buscar(),new Alias(),new Cantando(),new Aleatorio(),new Detener(),new Saltar(),
+            new Cola(),new Listar(),new Deslistar(),new PlayList()};
 
     static{
         new Perdon();

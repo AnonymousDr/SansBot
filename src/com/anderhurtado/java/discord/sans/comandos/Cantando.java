@@ -1,5 +1,6 @@
 package com.anderhurtado.java.discord.sans.comandos;
 
+import com.anderhurtado.java.discord.sans.objetos.Boton;
 import com.anderhurtado.java.discord.sans.objetos.Cantante;
 import com.anderhurtado.java.discord.sans.objetos.Comando;
 import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack;
@@ -24,7 +25,7 @@ public class Cantando extends Comando{
         Cantante c=Cantante.getCantante(e.getGuild());
         AudioTrack at;
         if(c==null||(at=c.getCancion())==null){
-            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke?").complete();
+            e.getChannel().sendMessage("¡No estoy cantando nada aquí! ¿Karaoke? "+Boton.MICROFONO_NOTAS).complete();
             return;
         }EmbedBuilder eb=new EmbedBuilder();
         eb.setColor(Color.cyan);

@@ -14,5 +14,7 @@
     <orderEntry type="library" exported="" name="commons-io:commons-io:2.6" level="project" />
     <orderEntry type="module" module-name="Externo común" exported="" />
     <orderEntry type="library" exported="" name="mysql-connector-java-5.0.8-bin" level="project" />
+    <orderEntry type="library" exported="" name="com.google.apis:google-api-services-youtube:v3-rev44-1.14.1-beta" level="project" />
+    <orderEntry type="library" name="com.google.http-client:google-http-client:1.20.0" level="project" />
   </component>
 </module>

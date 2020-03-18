@@ -1,6 +1,7 @@
 package com.anderhurtado.java.discord.sans.comandos;
 
 import com.anderhurtado.java.discord.sans.Inicio;
+import com.anderhurtado.java.discord.sans.objetos.Boton;
 import com.anderhurtado.java.discord.sans.objetos.Cantante;
 import com.anderhurtado.java.discord.sans.objetos.Comando;
 import com.anderhurtado.java.discord.sans.util.Biblioteca;
@@ -11,7 +12,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 public class Agregar extends Comando{
 
     public Agregar(){
-        super("Añadir un alias a una canción","agregar","añadir","registrar");
+        super("Añadir un alias a una canción","agregar","añadir","registrar","add");
     }
 
     @Override
@@ -21,15 +22,15 @@ public class Agregar extends Comando{
             return;
         }String ID=Inicio.getID(args[1]);
         if(ID==null){
-            e.getChannel().sendMessage("No se ha podido recoger el identificador del vídeo del enlace.").complete();
+            e.getChannel().sendMessage(Boton.CRUZ_ROJA+" No se ha podido recoger el identificador del vídeo del enlace.").complete();
             return;
         }YoutubeAudioTrack yat=Cantante.getTrack(ID);
         if(yat==null){
-            e.getChannel().sendMessage("No se ha podido encontrar el vídeo en Youtube.").complete();
+            e.getChannel().sendMessage(Boton.CRUZ_ROJA+" No se ha podido encontrar el vídeo en Youtube.").complete();
             return;
         }AudioTrackInfo ati=yat.getInfo();
         if(ati.isStream){
-            e.getChannel().sendMessage("Lo siento, no reproduzco vídeos en directo.").complete();
+            e.getChannel().sendMessage("Lo siento, no reproduzco vídeos en directo "+Boton.ENFADADO).complete();
             return;
         }String[] alias=new String[args.length-2];
         for(int x=2;x<args.length;x++)alias[x-2]=args[x];

@@ -1,6 +1,6 @@
 <component name="libraryTable">
   <library name="net.katsstuff:ackcord-lavaplayer-core_2.11:0.14.0" type="repository">
-    <properties maven-id="net.katsstuff:ackcord-lavaplayer-core_2.11:LATEST">
+    <properties maven-id="net.katsstuff:ackcord-lavaplayer-core_2.11:RELEASE">
       <exclude>
         <dependency maven-id="com.sedmelluq:lavaplayer-natives" />
         <dependency maven-id="com.sedmelluq:lavaplayer" />
