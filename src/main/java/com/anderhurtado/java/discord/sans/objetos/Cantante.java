@@ -1,6 +1,7 @@
 package com.anderhurtado.java.discord.sans.objetos;
 
 import com.anderhurtado.java.discord.sans.Inicio;
+import com.sedmelluq.discord.lavaplayer.format.AudioDataFormat;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack;
@@ -125,7 +126,7 @@ public class Cantante extends AudioEventAdapter implements AudioSendHandler{
     public void onTrackEnd(AudioPlayer ap,AudioTrack track,AudioTrackEndReason ater){
         if(!canciones.isEmpty()){
             AudioTrack siguiente;
-            while((siguiente=canciones.get(0)).getInfo().isStream)canciones.remove(siguiente);
+            while(!(siguiente=canciones.get(0)).isSeekable()||siguiente.getInfo().isStream)canciones.remove(siguiente);
             ap.playTrack(siguiente);
             canciones.remove(0);
             return;

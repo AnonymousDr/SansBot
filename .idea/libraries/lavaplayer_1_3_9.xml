@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="lavaplayer-1.3.9">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../APIs/Java/lavaplayer-1.3.34.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

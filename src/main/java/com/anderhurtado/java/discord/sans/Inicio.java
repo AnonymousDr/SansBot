@@ -37,6 +37,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -119,10 +120,12 @@ public class Inicio{
 
     public static AudioTrack[] getYoutubePlayList(String ID){
         try{
-            PlaylistItem[] lista=Inicio.YT.playlistItems().list("snippet").setPlaylistId(ID).setMaxResults(50l).setKey(YoutubeAPIKey).execute().getItems().toArray(new PlaylistItem[0]);
-            AudioTrack[] resultado=new AudioTrack[lista.length];
-            for(int x=0;x<lista.length;x++)resultado[x]=Cantante.getTrack(lista[x].getSnippet().getResourceId().getVideoId());
-            return resultado;
+            List<PlaylistItem> lista=Inicio.YT.playlistItems().list("snippet").setPlaylistId(ID).setMaxResults(50l).setKey(YoutubeAPIKey).execute().getItems();
+            List<AudioTrack> resultado=new ArrayList<>();
+            for(PlaylistItem pli:lista){
+                YoutubeAudioTrack yat=Cantante.getTrack(pli.getSnippet().getResourceId().getVideoId());
+                if(yat!=null&&yat.isSeekable())resultado.add(yat);
+            }return resultado.toArray(new AudioTrack[0]);
         }catch(Exception Ex){
             Ex.printStackTrace();
             return null;
